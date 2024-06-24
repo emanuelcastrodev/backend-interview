@@ -1,0 +1,43 @@
+server:
+  error:
+    include-stacktrace: never
+
+spring:
+  application:
+    name: store-ms
+    
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${ISSUER_HOST:http://localhost}:${ISSUER_PORT:9001}
+
+  datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3307}/${DB_NAME:store_db}?useTimezone=true&serverTimezone=UTC
+        username: ${DB_USER:root}
+        password: ${DB_PASSWORD:root}
+  jpa:
+      hibernate:
+          ddl-auto: update
+      show-sql: false
+      open-in-view: true
+
+
+springdoc:
+  paths-to-match:
+    - /store/v1/**
+    - /car/v1/**
+    - /opportunity/v1/**
+    - /store/v2/**
+    - /car/v2/**
+    - /opportunity/v2/**
+  swagger-ui:
+    use-root-path: true
+    oauth:
+      use-pkce-with-authorization-code-grant: true
+      client-id: swagger-client
+      client-secret: secret
+  oAuthFlow:
+    authorizationUrl: http://localhost:9001/oauth2/authorize
+    tokenUrl: http://localhost:9001/oauth2/token

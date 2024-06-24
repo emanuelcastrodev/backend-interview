@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "secrets.jwt-key",
+    "type": "java.lang.String",
+    "description": "Key to jwt generation."
+  },
+  {
+    "name": "authorization-server-configs.issuer-uri",
+    "type": "java.lang.String",
+    "description": "A description for 'authorization-server-configs.issuer-uri'"
+  }
+]}

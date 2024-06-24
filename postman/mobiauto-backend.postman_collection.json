@@ -1,0 +1,1488 @@
+{
+	"info": {
+		"_postman_id": "a8578d5f-3e32-4a97-8f04-49391b7d8bb7",
+		"name": "mobiauto-backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30469499"
+	},
+	"item": [
+		{
+			"name": "oauth-ms",
+			"item": [
+				{
+					"name": "Authorization Code",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9001/oauth2/authorize?response_type=code&client_id=oidc-client&redirect_uri=http://localhost:9001/authorized&scope=profile email&code_challenge=vZFQW1mcAe20jS6Kfe3hFY4_T5UKImIkfWV49_KHZ7Q&code_challenge_method=S256",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"oauth2",
+								"authorize"
+							],
+							"query": [
+								{
+									"key": "response_type",
+									"value": "code"
+								},
+								{
+									"key": "client_id",
+									"value": "oidc-client"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:9001/authorized"
+								},
+								{
+									"key": "scope",
+									"value": "profile email"
+								},
+								{
+									"key": "code_challenge",
+									"value": "vZFQW1mcAe20jS6Kfe3hFY4_T5UKImIkfWV49_KHZ7Q"
+								},
+								{
+									"key": "code_challenge_method",
+									"value": "S256"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request Token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "secret",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "oidc-client",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:9001/oauth2/token?redirect_uri=http://localhost:9001/authorized&scope=email profile&grant_type=authorization_code&code=jZCiNX7_9-InI4bHShozGc0crLFgx-07eHvXrEgLliGlLgFQdkkGsGVajPr6LiJGTgKw_UykPQkt4J7xMZEw797JnFcvFLEAS1ax6QoyfcY6UaHnfVMN3qajvqRQS19O",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"oauth2",
+								"token"
+							],
+							"query": [
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:9001/authorized"
+								},
+								{
+									"key": "scope",
+									"value": "email profile"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code"
+								},
+								{
+									"key": "code",
+									"value": "jZCiNX7_9-InI4bHShozGc0crLFgx-07eHvXrEgLliGlLgFQdkkGsGVajPr6LiJGTgKw_UykPQkt4J7xMZEw797JnFcvFLEAS1ax6QoyfcY6UaHnfVMN3qajvqRQS19O"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "store-ms",
+			"item": [
+				{
+					"name": "Store",
+					"item": [
+						{
+							"name": "V1",
+							"item": [
+								{
+									"name": "Get Store By UUID",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": [
+												{
+													"key": "scope",
+													"value": "{{client-scopes}}",
+													"type": "string"
+												},
+												{
+													"key": "clientSecret",
+													"value": "{{client-secret}}",
+													"type": "string"
+												},
+												{
+													"key": "clientId",
+													"value": "{{client-id}}",
+													"type": "string"
+												},
+												{
+													"key": "accessTokenUrl",
+													"value": "{{oauth-ms-token-url}}",
+													"type": "string"
+												},
+												{
+													"key": "authUrl",
+													"value": "{{oauth-ms-authorize-url}}",
+													"type": "string"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{client-callback-url}}",
+													"type": "string"
+												},
+												{
+													"key": "client_authentication",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "state",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "grant_type",
+													"value": "authorization_code_with_pkce",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "tokenName",
+													"value": "bearer",
+													"type": "string"
+												},
+												{
+													"key": "addTokenTo",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{store-ms-url}}/store/v1/d8824d64-a2cb-40b3-b889-cf7cdecf6602",
+											"host": [
+												"{{store-ms-url}}"
+											],
+											"path": [
+												"store",
+												"v1",
+												"d8824d64-a2cb-40b3-b889-cf7cdecf6602"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get All Store",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": [
+												{
+													"key": "scope",
+													"value": "{{client-scopes}}",
+													"type": "string"
+												},
+												{
+													"key": "clientSecret",
+													"value": "{{client-secret}}",
+													"type": "string"
+												},
+												{
+													"key": "clientId",
+													"value": "{{client-id}}",
+													"type": "string"
+												},
+												{
+													"key": "accessTokenUrl",
+													"value": "{{oauth-ms-token-url}}",
+													"type": "string"
+												},
+												{
+													"key": "authUrl",
+													"value": "{{oauth-ms-authorize-url}}",
+													"type": "string"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{client-callback-url}}",
+													"type": "string"
+												},
+												{
+													"key": "client_authentication",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "state",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "grant_type",
+													"value": "authorization_code_with_pkce",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "tokenName",
+													"value": "bearer",
+													"type": "string"
+												},
+												{
+													"key": "addTokenTo",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{store-ms-url}}/store/v1/all",
+											"host": [
+												"{{store-ms-url}}"
+											],
+											"path": [
+												"store",
+												"v1",
+												"all"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Store",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": [
+												{
+													"key": "scope",
+													"value": "{{client-scopes}}",
+													"type": "string"
+												},
+												{
+													"key": "clientSecret",
+													"value": "{{client-secret}}",
+													"type": "string"
+												},
+												{
+													"key": "clientId",
+													"value": "{{client-id}}",
+													"type": "string"
+												},
+												{
+													"key": "accessTokenUrl",
+													"value": "{{oauth-ms-token-url}}",
+													"type": "string"
+												},
+												{
+													"key": "authUrl",
+													"value": "{{oauth-ms-authorize-url}}",
+													"type": "string"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{client-callback-url}}",
+													"type": "string"
+												},
+												{
+													"key": "grant_type",
+													"value": "authorization_code_with_pkce",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "123",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "emanuel",
+													"type": "string"
+												},
+												{
+													"key": "addTokenTo",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "client_authentication",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "state",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "tokenName",
+													"value": "bearer",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"cnpj\": \"94.310.406/0001-14\",\r\n    \"social_name\": \"NameAS\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{store-ms-url}}/store/v1/create",
+											"host": [
+												"{{store-ms-url}}"
+											],
+											"path": [
+												"store",
+												"v1",
+												"create"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "V2",
+							"item": [
+								{
+									"name": "Create Store V2",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": [
+												{
+													"key": "scope",
+													"value": "{{client-scopes}}",
+													"type": "string"
+												},
+												{
+													"key": "clientSecret",
+													"value": "{{client-secret}}",
+													"type": "string"
+												},
+												{
+													"key": "clientId",
+													"value": "{{client-id}}",
+													"type": "string"
+												},
+												{
+													"key": "accessTokenUrl",
+													"value": "{{oauth-ms-token-url}}",
+													"type": "string"
+												},
+												{
+													"key": "authUrl",
+													"value": "{{oauth-ms-authorize-url}}",
+													"type": "string"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{client-callback-url}}",
+													"type": "string"
+												},
+												{
+													"key": "grant_type",
+													"value": "authorization_code_with_pkce",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "123",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "emanuel",
+													"type": "string"
+												},
+												{
+													"key": "addTokenTo",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "client_authentication",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "state",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "tokenName",
+													"value": "bearer",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"cnpj\": \"94.310.406/0001-15\",\r\n    \"social_name\": \"NamasdaseAS\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{store-ms-url}}/store/v2/create",
+											"host": [
+												"{{store-ms-url}}"
+											],
+											"path": [
+												"store",
+												"v2",
+												"create"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Opportunity",
+					"item": [
+						{
+							"name": "V1",
+							"item": [
+								{
+									"name": "Get Opportunity By UUID",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": [
+												{
+													"key": "scope",
+													"value": "{{client-scopes}}",
+													"type": "string"
+												},
+												{
+													"key": "clientSecret",
+													"value": "{{client-secret}}",
+													"type": "string"
+												},
+												{
+													"key": "clientId",
+													"value": "{{client-id}}",
+													"type": "string"
+												},
+												{
+													"key": "accessTokenUrl",
+													"value": "{{oauth-ms-token-url}}",
+													"type": "string"
+												},
+												{
+													"key": "authUrl",
+													"value": "{{oauth-ms-authorize-url}}",
+													"type": "string"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{client-callback-url}}",
+													"type": "string"
+												},
+												{
+													"key": "client_authentication",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "state",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "grant_type",
+													"value": "authorization_code_with_pkce",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "tokenName",
+													"value": "bearer",
+													"type": "string"
+												},
+												{
+													"key": "addTokenTo",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{store-ms-url}}/opportunity/v1/cd334913-b13e-41ca-9644-a9eff3e451d4",
+											"host": [
+												"{{store-ms-url}}"
+											],
+											"path": [
+												"opportunity",
+												"v1",
+												"cd334913-b13e-41ca-9644-a9eff3e451d4"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get All Opportunities",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": [
+												{
+													"key": "scope",
+													"value": "{{client-scopes}}",
+													"type": "string"
+												},
+												{
+													"key": "clientSecret",
+													"value": "{{client-secret}}",
+													"type": "string"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{client-callback-url}}",
+													"type": "string"
+												},
+												{
+													"key": "clientId",
+													"value": "{{client-id}}",
+													"type": "string"
+												},
+												{
+													"key": "accessTokenUrl",
+													"value": "{{oauth-ms-token-url}}",
+													"type": "string"
+												},
+												{
+													"key": "authUrl",
+													"value": "{{oauth-ms-authorize-url}}",
+													"type": "string"
+												},
+												{
+													"key": "client_authentication",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "state",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "grant_type",
+													"value": "authorization_code_with_pkce",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "tokenName",
+													"value": "bearer",
+													"type": "string"
+												},
+												{
+													"key": "addTokenTo",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{store-ms-url}}/opportunity/v1/all",
+											"host": [
+												"{{store-ms-url}}"
+											],
+											"path": [
+												"opportunity",
+												"v1",
+												"all"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set Opportunity Assistant",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": [
+												{
+													"key": "scope",
+													"value": "{{client-scopes}}",
+													"type": "string"
+												},
+												{
+													"key": "clientSecret",
+													"value": "{{client-secret}}",
+													"type": "string"
+												},
+												{
+													"key": "clientId",
+													"value": "{{client-id}}",
+													"type": "string"
+												},
+												{
+													"key": "accessTokenUrl",
+													"value": "{{oauth-ms-token-url}}",
+													"type": "string"
+												},
+												{
+													"key": "authUrl",
+													"value": "{{oauth-ms-authorize-url}}",
+													"type": "string"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{client-callback-url}}",
+													"type": "string"
+												},
+												{
+													"key": "client_authentication",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "state",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "grant_type",
+													"value": "authorization_code_with_pkce",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "tokenName",
+													"value": "bearer",
+													"type": "string"
+												},
+												{
+													"key": "addTokenTo",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{store-ms-url}}/opportunity/v1/set-assistant/2c73f68d-10b2-4cb7-8e6b-18eb1b97b3ae",
+											"host": [
+												"{{store-ms-url}}"
+											],
+											"path": [
+												"opportunity",
+												"v1",
+												"set-assistant",
+												"2c73f68d-10b2-4cb7-8e6b-18eb1b97b3ae"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Close Opportunity",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": [
+												{
+													"key": "scope",
+													"value": "{{client-scopes}}",
+													"type": "string"
+												},
+												{
+													"key": "clientSecret",
+													"value": "{{client-secret}}",
+													"type": "string"
+												},
+												{
+													"key": "clientId",
+													"value": "{{client-id}}",
+													"type": "string"
+												},
+												{
+													"key": "accessTokenUrl",
+													"value": "{{oauth-ms-token-url}}",
+													"type": "string"
+												},
+												{
+													"key": "authUrl",
+													"value": "{{oauth-ms-authorize-url}}",
+													"type": "string"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{client-callback-url}}",
+													"type": "string"
+												},
+												{
+													"key": "client_authentication",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "state",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "grant_type",
+													"value": "authorization_code_with_pkce",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "tokenName",
+													"value": "bearer",
+													"type": "string"
+												},
+												{
+													"key": "addTokenTo",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"description\": \"Car sold\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{store-ms-url}}/opportunity/v1/set-close/2c73f68d-10b2-4cb7-8e6b-18eb1b97b3ae",
+											"host": [
+												"{{store-ms-url}}"
+											],
+											"path": [
+												"opportunity",
+												"v1",
+												"set-close",
+												"2c73f68d-10b2-4cb7-8e6b-18eb1b97b3ae"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Opportunity",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": [
+												{
+													"key": "scope",
+													"value": "{{client-scopes}}",
+													"type": "string"
+												},
+												{
+													"key": "clientSecret",
+													"value": "{{client-secret}}",
+													"type": "string"
+												},
+												{
+													"key": "clientId",
+													"value": "{{client-id}}",
+													"type": "string"
+												},
+												{
+													"key": "accessTokenUrl",
+													"value": "{{oauth-ms-token-url}}",
+													"type": "string"
+												},
+												{
+													"key": "authUrl",
+													"value": "{{oauth-ms-authorize-url}}",
+													"type": "string"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{client-callback-url}}",
+													"type": "string"
+												},
+												{
+													"key": "grant_type",
+													"value": "authorization_code_with_pkce",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "123",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "emanuel",
+													"type": "string"
+												},
+												{
+													"key": "addTokenTo",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "client_authentication",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "state",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "tokenName",
+													"value": "bearer",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"store_uuid\": \"1b04c248-ead1-4fb5-aae1-0c31bbd5409b\",\r\n    \"car_uuid\": \"a41f2e96-7ff3-426e-89ca-a609d314c4f5\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/opportunity/v1/create",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"opportunity",
+												"v1",
+												"create"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "V2",
+							"item": [
+								{
+									"name": "Create Opportunity V2",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": [
+												{
+													"key": "scope",
+													"value": "{{client-scopes}}",
+													"type": "string"
+												},
+												{
+													"key": "clientSecret",
+													"value": "{{client-secret}}",
+													"type": "string"
+												},
+												{
+													"key": "clientId",
+													"value": "{{client-id}}",
+													"type": "string"
+												},
+												{
+													"key": "accessTokenUrl",
+													"value": "{{oauth-ms-token-url}}",
+													"type": "string"
+												},
+												{
+													"key": "authUrl",
+													"value": "{{oauth-ms-authorize-url}}",
+													"type": "string"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{client-callback-url}}",
+													"type": "string"
+												},
+												{
+													"key": "grant_type",
+													"value": "authorization_code_with_pkce",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "123",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "emanuel",
+													"type": "string"
+												},
+												{
+													"key": "addTokenTo",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "client_authentication",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "state",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "tokenName",
+													"value": "bearer",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"store_uuid\": \"1b04c248-ead1-4fb5-aae1-0c31bbd5409b\",\r\n    \"car_uuid\": \"a41f2e96-7ff3-426e-89ca-a609d314c4f5\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{store-ms-url}}/opportunity/v2/create",
+											"host": [
+												"{{store-ms-url}}"
+											],
+											"path": [
+												"opportunity",
+												"v2",
+												"create"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Car",
+					"item": [
+						{
+							"name": "V1",
+							"item": [
+								{
+									"name": "Get Car By UUID",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": [
+												{
+													"key": "scope",
+													"value": "{{client-scopes}}",
+													"type": "string"
+												},
+												{
+													"key": "clientSecret",
+													"value": "{{client-secret}}",
+													"type": "string"
+												},
+												{
+													"key": "clientId",
+													"value": "{{client-id}}",
+													"type": "string"
+												},
+												{
+													"key": "accessTokenUrl",
+													"value": "{{oauth-ms-token-url}}",
+													"type": "string"
+												},
+												{
+													"key": "authUrl",
+													"value": "{{oauth-ms-authorize-url}}",
+													"type": "string"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{client-callback-url}}",
+													"type": "string"
+												},
+												{
+													"key": "client_authentication",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "state",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "grant_type",
+													"value": "authorization_code_with_pkce",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "tokenName",
+													"value": "bearer",
+													"type": "string"
+												},
+												{
+													"key": "addTokenTo",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{store-ms-url}}/car/v1/a41f2e96-7ff3-426e-89ca-a609d314c4f5",
+											"host": [
+												"{{store-ms-url}}"
+											],
+											"path": [
+												"car",
+												"v1",
+												"a41f2e96-7ff3-426e-89ca-a609d314c4f5"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get All Cars",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": [
+												{
+													"key": "clientId",
+													"value": "{{client-id}}",
+													"type": "string"
+												},
+												{
+													"key": "scope",
+													"value": "{{client-scopes}}",
+													"type": "string"
+												},
+												{
+													"key": "clientSecret",
+													"value": "{{client-secret}}",
+													"type": "string"
+												},
+												{
+													"key": "accessTokenUrl",
+													"value": "{{oauth-ms-token-url}}",
+													"type": "string"
+												},
+												{
+													"key": "authUrl",
+													"value": "{{oauth-ms-authorize-url}}",
+													"type": "string"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{client-callback-url}}",
+													"type": "string"
+												},
+												{
+													"key": "client_authentication",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "state",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "grant_type",
+													"value": "authorization_code_with_pkce",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "tokenName",
+													"value": "bearer",
+													"type": "string"
+												},
+												{
+													"key": "addTokenTo",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{store-ms-url}}/car/v1/all",
+											"host": [
+												"{{store-ms-url}}"
+											],
+											"path": [
+												"car",
+												"v1",
+												"all"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Car",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": [
+												{
+													"key": "authUrl",
+													"value": "{{oauth-ms-authorize-url}}",
+													"type": "string"
+												},
+												{
+													"key": "scope",
+													"value": "{{client-scopes}}",
+													"type": "string"
+												},
+												{
+													"key": "clientSecret",
+													"value": "{{client-secret}}",
+													"type": "string"
+												},
+												{
+													"key": "clientId",
+													"value": "{{client-id}}",
+													"type": "string"
+												},
+												{
+													"key": "accessTokenUrl",
+													"value": "{{oauth-ms-token-url}}",
+													"type": "string"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{client-callback-url}}",
+													"type": "string"
+												},
+												{
+													"key": "grant_type",
+													"value": "authorization_code_with_pkce",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "123",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "emanuel",
+													"type": "string"
+												},
+												{
+													"key": "addTokenTo",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "client_authentication",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "state",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "tokenName",
+													"value": "bearer",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"brand\": \"Ford\",\r\n    \"version\": \"ABX\",\r\n    \"model_year\": 2025\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{store-ms-url}}/car/v1/create",
+											"host": [
+												"{{store-ms-url}}"
+											],
+											"path": [
+												"car",
+												"v1",
+												"create"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "V2",
+							"item": [
+								{
+									"name": "Create Car V2",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": [
+												{
+													"key": "authUrl",
+													"value": "{{oauth-ms-authorize-url}}",
+													"type": "string"
+												},
+												{
+													"key": "scope",
+													"value": "{{client-scopes}}",
+													"type": "string"
+												},
+												{
+													"key": "clientSecret",
+													"value": "{{client-secret}}",
+													"type": "string"
+												},
+												{
+													"key": "clientId",
+													"value": "{{client-id}}",
+													"type": "string"
+												},
+												{
+													"key": "accessTokenUrl",
+													"value": "{{oauth-ms-token-url}}",
+													"type": "string"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{client-callback-url}}",
+													"type": "string"
+												},
+												{
+													"key": "grant_type",
+													"value": "authorization_code_with_pkce",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "123",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "emanuel",
+													"type": "string"
+												},
+												{
+													"key": "addTokenTo",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "client_authentication",
+													"value": "header",
+													"type": "string"
+												},
+												{
+													"key": "state",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "tokenName",
+													"value": "bearer",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"brand\": \"Ford\",\r\n    \"version\": \"ABX\",\r\n    \"model_year\": 2025\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{store-ms-url}}/car/v2/create",
+											"host": [
+												"{{store-ms-url}}"
+											],
+											"path": [
+												"car",
+												"v2",
+												"create"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

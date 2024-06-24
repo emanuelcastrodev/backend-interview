@@ -1,0 +1,86 @@
+services:
+  mobiauto-oauth-mysql-server:
+    container_name: mobiauto-oauth-mysql-server
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=oauth_db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_TCP_PORT=3306
+    ports:
+      - "3306:3306"
+    networks:
+      - mobiauto-network
+
+  mobiauto-store-mysql-server:
+    container_name: mobiauto-store-mysql-server
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=store_db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_TCP_PORT=3307
+    ports:
+      - "3307:3307"
+    networks:
+      - mobiauto-network
+
+  mobiauto-oauth-server:
+    container_name: mobiauto-oauth-server
+    build:
+      context: oauth-ms/
+      no_cache: true
+    environment:
+      DB_HOST: mobiauto-oauth-mysql-server
+      DB_PORT: 3306
+      DB_NAME: oauth_db
+      DB_USER: root
+      DB_PASSWORD: root
+      ISSUER_HOST: http://mobiauto-oauth-server
+      ISSUER_PORT: 9001
+    depends_on:
+      - mobiauto-oauth-mysql-server
+    ports:
+      - "9001:9001"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 30s
+        max_attempts: 3
+    networks:
+      - mobiauto-network
+
+  mobiauto-store-ms-server:
+    container_name: mobiauto-store-ms-server
+    build:
+      context: store-ms/
+      no_cache: true
+    environment:
+      DB_HOST: mobiauto-store-mysql-server
+      DB_PORT: 3307
+      DB_NAME: store_db
+      DB_USER: root
+      DB_PASSWORD: root
+      ISSUER_HOST: http://mobiauto-oauth-server
+      ISSUER_PORT: 9001
+    depends_on:
+      - mobiauto-store-mysql-server
+    ports:
+      - "8080:8080"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 30s
+        max_attempts: 3
+    networks:
+      - mobiauto-network
+
+networks:
+  mobiauto-network:
+    driver: bridge
+  store-network:
+    driver: bridge
+  oauth-network:
+    driver: bridge

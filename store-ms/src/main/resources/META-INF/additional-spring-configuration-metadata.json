@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "springdoc.oAuthFlow.authorization-url",
+    "type": "java.lang.String",
+    "description": "Authorizaton code url"
+  },
+  {
+    "name": "springdoc.oAuthFlow.tokenUrl",
+    "type": "java.lang.String",
+    "description": "Token Url."
+  },
+  {
+    "name": "springdoc.oAuthFlow.redirectUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'springdoc.oAuthFlow.redirectUrl'"
+  }
+]}
