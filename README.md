@@ -138,35 +138,9 @@ Registre uma oportunidade:
 Caso a sua conta tenha uma permissão igual ou maior de um Assistente, registre sua conta como assistante da oportunidade:
 ![set_assistant](https://github.com/emanuelcastrodev/backend-interview/assets/9869799/aa43dc45-18fb-41a9-be7c-c5d7f2384fbb)
 
-Contas com diferentes permissões: 
-<table>
-    <tr>
-        <td>Username</td>
-        <td>Password</td>
-    </tr>
-    <tr>
-        <td>emanuel</td>
-        <td>123</td>
-    </tr>
-    <tr>
-        <td>emanuel_assistant</td>
-        <td>123</td>
-    </tr>
-    <tr>
-        <td>emanuel_admin</td>
-        <td>123</td>
-    </tr>
-    <tr>
-        <td>emanuel_owner</td>
-        <td>123</td>
-    </tr>
-</table>
-
 ## 📝 Observações
 
 Esse projeto foi criado em tres dias referente a um teste para um vaga de Desenvolvedor Backend na Mobiauto. E poderá ser utilizado para fins de estudo para qualquer pessoa que tenha interesse sobre as implentações realizadas nesse projeto.
 Esse projeto ainda não chegou na sua versão final, devido ao prazo de entrega do teste. Porém todas as tecnologias que descrevi estão devidamente implementadas.
 
-*Esse projeto é um backup, porque perdi o acesso à minha conta principal e estou aguardando o retorno por parte do GitHub.*
-![ticket](https://github.com/emanuelcastrodev/backend-interview/assets/9869799/26629691-824a-45b3-8316-b3e004b886b7)
 
